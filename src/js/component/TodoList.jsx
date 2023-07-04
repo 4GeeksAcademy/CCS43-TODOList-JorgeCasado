@@ -1,25 +1,44 @@
 import React, { useState } from "react";
 
-const TodoList = () => {
+const TodoList = () => 
+{
     const [task, setTask] = useState("");
+
     const [taskList, setTaskList] = useState([]);
+
     const [error, setError] = useState(false)
-    const handleTask = (event) => {
+
+    const handleTask = (event) => 
+    {
         setTask(event.target.value); 
     } 
-    const addTask = (event) => {
-        if (event.key == "Enter") {
+    const addTask = (event) => 
+    {
+        if (event.key == "Enter") 
+        {
 
-            if (event.target.value == "") {
+            if (event.target.value == "") 
+            {
                 setError(true);
+
                 alert("Please add a task!");
+
                 return;
             }
             setTaskList([...taskList, task]);
+
             setTask("");
+
             setError(false);
         }
     }
+    const deleteTask = (Id) => 
+    {
+        console.log(Id);
+
+        setTaskList(taskList.filter((task, index) => index != Id));
+    }
+
     return (
 
         <div className="text-center vh-100 text-light bg-dark d-flex align-items-center justify-content-center gap-3 flex-column">
@@ -30,8 +49,9 @@ const TodoList = () => {
             <div>
                 <ul>
                 {
-                    taskList.map((task, index) => {
-                        return <li key={index}> {task} </li>
+                    taskList.map((task, index) => 
+                    {
+                        return <li key={index}>{task}<span className="text-danger" onClick={() => deleteTask(index)}> x </span></li>
                     })
                 }
                 </ul>
@@ -41,3 +61,5 @@ const TodoList = () => {
 };
 
 export default TodoList;
+
+
