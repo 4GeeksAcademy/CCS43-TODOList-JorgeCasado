@@ -7,7 +7,9 @@ const TodoList = () =>
     const [taskList, setTaskList] = useState([]);
 
     const [error, setError] = useState(false)
-
+    
+    const [active, setActive] = useState(false)
+    
     const handleTask = (event) => 
     {
         setTask(event.target.value); 
@@ -43,7 +45,7 @@ const TodoList = () =>
 
         <div className="text-center vh-100 text-light bg-dark d-flex align-items-center justify-content-center gap-3 flex-column">
             
-            <label htmlFor="task" className={`${error ? "text-danger fw-bold" : "light"}`}>Task List</label>
+            <label htmlFor="task" className={`${error ? "text-danger fw-bold" : "light"}`}><strong>Task List</strong></label>
             
             <input className="bg-dark text-light" type="text" id="task" value={task} onKeyDown={addTask} onChange={handleTask}/>
             <div>
@@ -51,7 +53,7 @@ const TodoList = () =>
                 {
                     taskList.map((task, index) => 
                     {
-                        return <li key={index}>{task}<span className="text-danger" onClick={() => deleteTask(index)}> x </span></li>
+                        return <li className="task" key={index}>{task}<span className="delete" onClick={() => deleteTask(index)}> x </span></li>
                     })
                 }
                 </ul>
@@ -62,4 +64,6 @@ const TodoList = () =>
 
 export default TodoList;
 
+//onMouseOver={() => setActive(true)} onMouseOut={() => setActive(false)}
 
+//{active?"red":"mouseOver"}
