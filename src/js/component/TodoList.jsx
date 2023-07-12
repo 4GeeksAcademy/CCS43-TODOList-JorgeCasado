@@ -50,7 +50,9 @@ const TodoList = () => {
                 </ul>
             </div>
             <div>
-                {taskList.length} Items left
+            {taskList.length === 0
+                    ? "No tasks listed yet. "
+                    : taskList.length + " Tasks Listed"}
             </div>
         </div>
     );
